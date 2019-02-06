@@ -107,7 +107,9 @@ cummulativeStats(cummulativeStats(:,9)>200,:)=[];
 cummulativeStats(cummulativeStats(:,1)==0,:)=[];
 
 % No cases discarded, all were removed previously
-%% Display done in other files, just save
+%% Display done in other files, just save in the GitHub folder
+cd('D:\Acad\GitHub\ARC\Code')
 
-save(strcat('CummulativeStats_',datestr(date,'yyyy_mm_dd')),cummulativeStats)
+filename =strcat('CummulativeStats_',datestr(date,'yyyy_mm_dd'));
+save(filename,'cummulativeStats')
 
