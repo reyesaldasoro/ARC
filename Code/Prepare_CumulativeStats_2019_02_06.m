@@ -86,7 +86,7 @@ for currentCase=1: numMetrics
 
 end
 
-labels={'group','case','time','Dist [um/s]','Rel Position','Min/Maj','Forkness (N)','Forkness (C)','Skel Alignment'}
+labels={'group','case','time','Dist [um/s]','Rel Position','Min/Maj','Forkness (N)','Forkness (C)','Skel Alignment'};
 %% Results 2019_02_06
 % As of 2019_02_06, this produces 10,232 rows, one for each instance of a
 % cell with all its stats
@@ -111,5 +111,5 @@ cummulativeStats(cummulativeStats(:,1)==0,:)=[];
 cd('D:\Acad\GitHub\ARC\Code')
 
 filename =strcat('CummulativeStats_',datestr(date,'yyyy_mm_dd'));
-save(filename,'cummulativeStats')
+save(filename,'cummulativeStats','labels')
 
