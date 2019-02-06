@@ -21,10 +21,10 @@ load(CumulativeStats_Dir(end).name,'cumulativeStats','labels')
 %labels={'group','case','time','Dist [um/s]','Rel Position','Min/Maj','Forkness (N)','Forkness (C)','Skel Alignment'};
 
 %% Display ONE METRIC against the groups 1,2,3,... 14 AND A second metric divided by steps in boxplots
-step = 4;
+step = 5;
 invStep = 1/step;
 currentMetric_x           = 4;
-currentMetric_y           = 6;
+currentMetric_y           = 5;
 boxplot(cumulativeStats(:,currentMetric_y) ,{cumulativeStats(:,1),invStep/2+(invStep)*round(step*cumulativeStats(:,currentMetric_x))},'whisker',2)
 grid on
 xlabel({'Group';labels{currentMetric_x}},'fontsize',15)
