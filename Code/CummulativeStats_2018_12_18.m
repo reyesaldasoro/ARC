@@ -1,8 +1,8 @@
+%% Clear all variables and close all figures
 clear all
 close all
 
 %% Read the files that have been stored in the current folder
-
 if strcmp(filesep,'/')
     % Running in Mac
     load('/Users/ccr22/OneDrive - City, University of London/Acad/ARC_Grant/Datasets/DataARC_Datasets_2019_02_01.mat')
@@ -14,15 +14,13 @@ else
     cd ('D:\OneDrive - City, University of London\Acad\ARC_Grant\Results')
     baseDir                             = 'Metrics_2019_02_01/metrics/';
 end
-
+% Calculate the number of files, as of February 2019 there were 315 valid
+% files
 MetricsDir                          = dir(strcat(baseDir,'*.mat'));
 numMetrics                          = size(MetricsDir,1);
 
-
-
-
-%% Calculate a vector for injured non-injured
-
+%% Calculate a vector for injured non-injured and groups
+% This will be used to create groups for 
 GroupCell(numMetrics,1)=0;
 %This loop is necessary as the order of the files and the DataARC may not
 %be the same
