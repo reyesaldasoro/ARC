@@ -19,9 +19,8 @@ load(CumulativeStats_Dir(end).name,'cumulativeStats','labels')
     % 7 nuclei_metrics.forkness
     % 8 cell_metrics.forkness
     % 9 cell_metrics.skelAlignment
-%% Prepare labels
-    
-labels={'group','case','time','Dist [um/s]','Rel Position','Min/Maj','Forkness (N)','Forkness (C)','Skel Alignment'};
+% Prepare labels   
+%labels={'group','case','time','Dist [um/s]','Rel Position','Min/Maj','Forkness (N)','Forkness (C)','Skel Alignment'};
 
 %% Display ... ONE METRIC against the velocity divided by steps in boxplots
 % This requires that the velocity is aggregated in groups
