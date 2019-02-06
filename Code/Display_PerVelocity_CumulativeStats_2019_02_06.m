@@ -23,11 +23,14 @@ load(CumulativeStats_Dir(end).name)
     
 labels={'group','case','time','Dist [um/s]','Rel Position','Min/Maj','Forkness (N)','Forkness (C)','Skel Alignment'};
 
-%% Display ONE METRIC against the groups 1,2,3,... 14
-currentMetric_x           = 1;
-currentMetric_y           = 9;
+%% Display ... ONE METRIC against the velocity divided by steps in boxplots
+% This requires that the velocity is aggregated in groups
+step = 20;
+invStep = 1/step;
+currentMetric_x           = 4;
+currentMetric_y           = 6;
 %figure
-boxplot(cummulativeStats(:,currentMetric_y),cummulativeStats(:,currentMetric_x),'whisker',1)
+boxplot(cummulativeStats(:,currentMetric_y),invStep/2+(invStep)*round(step*cummulativeStats(:,currentMetric_x)),'whisker',2)
 grid on
 xlabel(labels{currentMetric_x},'fontsize',20)
 ylabel(labels{currentMetric_y},'fontsize',20)
