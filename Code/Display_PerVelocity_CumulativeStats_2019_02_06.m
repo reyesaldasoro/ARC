@@ -6,7 +6,7 @@ close all
 % Find the files in the folder
 CumulativeStats_Dir                     = dir('CumulativeStats_2019*');
 % Take the latest one and load the stats
-load(CumulativeStats_Dir(end).name)
+load(CumulativeStats_Dir(end).name,'cumulativeStats','labels')
 %%
 
     % calculate the stats of the current video In the Following Order:
