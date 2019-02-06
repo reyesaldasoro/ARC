@@ -87,71 +87,27 @@ for currentCase=1: numMetrics
 end
 
 labels={'group','case','time','Dist [um/s]','Rel Position','Min/Maj','Forkness (N)','Forkness (C)','Skel Alignment'}
+%% Results 2019_02_06
+% As of 2019_02_06, this produces 10,232 rows, one for each instance of a
+% cell with all its stats
+
 %% remove the cases with NaNs (first of every track, no velocity is calculated)
 cummulativeStats(isnan(cummulativeStats(:,4)),:)=[];
 
+% As of 2019_02_06 there were 750 cases removed leaving 9483
 %% remove the cases with speed above 0.49
 cummulativeStats(cummulativeStats(:,4)>0.45,:)=[];
 
+% As of 2019_02_06 there were 14 cases removed leaving 9468
 %% remove the cases with skeletal alignment above 300
 cummulativeStats(cummulativeStats(:,9)>200,:)=[];
 
-
+% As of 2019_02_06 there were 197 cases removed leaving 9271
 %% remove discarded cases
 cummulativeStats(cummulativeStats(:,1)==0,:)=[];
 
-%% Display ... rel position against the velocity divided by steps in boxplots
-step = 10;
-invStep = 1/step;
+% No cases discarded, all were removed previously
+%% Display done in other files, just save
 
-figure
-boxplot(cummulativeStats(:,5),invStep/2+(invStep)*round(step*cummulativeStats(:,4)),'whisker',1)
-grid on
-xlabel('Inst. velocity','fontsize',20)
-ylabel('Relative position of Nuclei','fontsize',20)
- %axis([0.5 5.5 -0.75 0.6])
- %axis([0.25 10.75 -0.75 0.65])
-%% rel position against the velocity divided by steps 
-figure
-plot(invStep/2+(invStep)*round(step*cummulativeStats(:,5)),cummulativeStats(:,2),'x')
-grid on
-xlabel('Inst. velocity','fontsize',20)
-ylabel('Relative position of Nuclei','fontsize',20)
+save(strcat('CummulativeStats_',datestr(date,'yyyy_mm_dd')),cummulativeStats)
 
-%% Display ... rel position against the velocity divided by steps AND injured/non-injured in boxplots
-step = 10;
-invStep = 1/step;
-
-caseBoxplot = 5;
-% figure
-% boxplot(cummulativeStats(:,caseBoxplot) ,{invStep/2+(invStep)*round(step*cummulativeStats(:,4)),cummulativeStats(:,1)})
-% grid on
-% xlabel(labels{4},'fontsize',20)
-% ylabel(labels{caseBoxplot},'fontsize',20)
-
-
-figure
-boxplot(cummulativeStats(:,caseBoxplot) ,{cummulativeStats(:,1),invStep/2+(invStep)*round(step*cummulativeStats(:,4))})
-grid on
-xlabel(labels{4},'fontsize',20)
-ylabel(labels{caseBoxplot},'fontsize',20)
-
-
-
-%%
-caseBoxplot =9;
-figure(caseBoxplot)
-boxplot(cummulativeStats(:,caseBoxplot),cummulativeStats(:,1))
-grid on
-ylabel(labels{caseBoxplot})
-
-
-%caseBoxplot =6;
-group1 = 5;
-group2 = 6;
-
-for group1=1:5
-    for group2=group1+1:6
-        [h,t(group1,group2),p]=ttest2(cummulativeStats(cummulativeStats(:,1)==group1,caseBoxplot),cummulativeStats(cummulativeStats(:,1)==group2,caseBoxplot));
-    end
-end
