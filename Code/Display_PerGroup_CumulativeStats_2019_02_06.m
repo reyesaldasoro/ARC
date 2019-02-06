@@ -25,9 +25,9 @@ load(CumulativeStats_Dir(end).name,'cumulativeStats','labels')
 
 %% Display ONE METRIC against the groups 1,2,3,... 14
 currentMetric_x           = 1;
-currentMetric_y           = 9;
+currentMetric_y           = 6;
 %figure
-boxplot(cummulativeStats(:,currentMetric_y),cummulativeStats(:,currentMetric_x),'whisker',1)
+boxplot(cumulativeStats(:,currentMetric_y),cumulativeStats(:,currentMetric_x),'whisker',1)
 grid on
 xlabel(labels{currentMetric_x},'fontsize',20)
 ylabel(labels{currentMetric_y},'fontsize',20)
