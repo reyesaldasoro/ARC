@@ -2,7 +2,12 @@
 clear all
 close all
 
-%% Read the files that have been stored in the current folder
+%% Read the current cumulative stats
+% Find the files in the folder
+CumulativeStats_Dir                     = dir('CumulativeStats_2019*');
+% Take the latest one and load the stats
+load(CumulativeStats_Dir(end).name)
+%%
 if strcmp(filesep,'/')
     % Running in Mac
     load('/Users/ccr22/OneDrive - City, University of London/Acad/ARC_Grant/Datasets/DataARC_Datasets_2019_02_01.mat')
