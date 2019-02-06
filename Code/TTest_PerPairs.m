@@ -20,13 +20,17 @@ load(CumulativeStats_Dir(end).name,'cumulativeStats','labels')
 % And Labels:
 %labels={'group','case','time','Dist [um/s]','Rel Position','Min/Maj','Forkness (N)','Forkness (C)','Skel Alignment'};
 
+%%
+GroupsPresent   = unique (cumulativeStats(:,1));
+
+
 %% Test per pairs
 caseBoxplot =8;
 %group1 = 5;
 %group2 = 6;
 
-for group1=1:13
-    for group2=group1+1:14
+for group1=GroupsPresent(1):GroupsPresent(end)-1
+    for group2=group1+1:GroupsPresent(end)
         [h(group1,group2),t(group1,group2),p]=ttest2(cumulativeStats(cumulativeStats(:,1)==group1,caseBoxplot),...
                                       cumulativeStats(cumulativeStats(:,1)==group2,caseBoxplot));
     end

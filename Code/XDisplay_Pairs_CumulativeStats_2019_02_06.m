@@ -24,9 +24,9 @@ load(CumulativeStats_Dir(end).name,'cumulativeStats','labels')
 step = 10;
 invStep = 1/step;
 currentMetric_x           = 1;
-currentMetric_y           = 1;
+currentMetric_y           = 5;
 %figure
-boxplot(cummulativeStats(:,currentMetric_y),invStep/2+(invStep)*round(step*cummulativeStats(:,currentMetric_x)),'whisker',1)
+boxplot(cumulativeStats(:,currentMetric_y),invStep/2+(invStep)*round(step*cumulativeStats(:,currentMetric_x)),'whisker',1)
 grid on
 xlabel(labels{currentMetric_x},'fontsize',20)
 ylabel(labels{currentMetric_y},'fontsize',20)
