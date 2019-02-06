@@ -7,9 +7,7 @@ close all
 CumulativeStats_Dir                     = dir('CumulativeStats_2019*');
 % Take the latest one and load the stats
 load(CumulativeStats_Dir(end).name,'cumulativeStats','labels')
-%%
-
-    % calculate the stats of the current video In the Following Order:
+%% Current order of the stats:
     % 1 GROUP, 1-non injured, etc
     % 2 CASE, i.e. the order of the files
     % 3 Time point
@@ -19,8 +17,7 @@ load(CumulativeStats_Dir(end).name,'cumulativeStats','labels')
     % 7 nuclei_metrics.forkness
     % 8 cell_metrics.forkness
     % 9 cell_metrics.skelAlignment
-% Prepare labels
-%    
+% And Labels:
 %labels={'group','case','time','Dist [um/s]','Rel Position','Min/Maj','Forkness (N)','Forkness (C)','Skel Alignment'};
 
 %% Display ONE METRIC against the groups 1,2,3,... 14

@@ -105,7 +105,7 @@ step = 10;
 invStep = 1/step;
 
 figure
-boxplot(cummulativeStats(:,5),invStep/2+(invStep)*round(step*cummulativeStats(:,4)),'whisker',1)
+boxplot(cumulativeStats(:,5),invStep/2+(invStep)*round(step*cumulativeStats(:,4)),'whisker',1)
 grid on
 xlabel('Inst. velocity','fontsize',20)
 ylabel('Relative position of Nuclei','fontsize',20)
@@ -113,7 +113,7 @@ ylabel('Relative position of Nuclei','fontsize',20)
  %axis([0.25 10.75 -0.75 0.65])
 %% rel position against the velocity divided by steps 
 figure
-plot(invStep/2+(invStep)*round(step*cummulativeStats(:,5)),cummulativeStats(:,2),'x')
+plot(invStep/2+(invStep)*round(step*cumulativeStats(:,4)),cumulativeStats(:,5),'x')
 grid on
 xlabel('Inst. velocity','fontsize',20)
 ylabel('Relative position of Nuclei','fontsize',20)
@@ -131,7 +131,7 @@ caseBoxplot = 5;
 
 
 figure
-boxplot(cummulativeStats(:,caseBoxplot) ,{cummulativeStats(:,1),invStep/2+(invStep)*round(step*cummulativeStats(:,4))})
+boxplot(cumulativeStats(:,caseBoxplot) ,{cumulativeStats(:,1),invStep/2+(invStep)*round(step*cumulativeStats(:,4))})
 grid on
 xlabel(labels{4},'fontsize',20)
 ylabel(labels{caseBoxplot},'fontsize',20)
