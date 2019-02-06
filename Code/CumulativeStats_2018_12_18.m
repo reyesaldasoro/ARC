@@ -139,19 +139,20 @@ ylabel(labels{caseBoxplot},'fontsize',20)
 
 
 %%
-caseBoxplot =9;
+caseBoxplot =8;
 figure(caseBoxplot)
-boxplot(cummulativeStats(:,caseBoxplot),cummulativeStats(:,1))
+boxplot(cumulativeStats(:,caseBoxplot),cumulativeStats(:,1))
 grid on
 ylabel(labels{caseBoxplot})
 
+%%
+caseBoxplot =8;
+%group1 = 5;
+%group2 = 6;
 
-%caseBoxplot =6;
-group1 = 5;
-group2 = 6;
-
-for group1=1:5
-    for group2=group1+1:6
-        [h,t(group1,group2),p]=ttest2(cummulativeStats(cummulativeStats(:,1)==group1,caseBoxplot),cummulativeStats(cummulativeStats(:,1)==group2,caseBoxplot));
+for group1=1:13
+    for group2=group1+1:14
+        [h(group1,group2),t(group1,group2),p]=ttest2(cumulativeStats(cumulativeStats(:,1)==group1,caseBoxplot),...
+                                      cumulativeStats(cumulativeStats(:,1)==group2,caseBoxplot));
     end
 end

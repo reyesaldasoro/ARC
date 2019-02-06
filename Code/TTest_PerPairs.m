@@ -1,0 +1,33 @@
+%% Clear all variables and close all figures
+clear all
+close all
+
+%% Read the current cumulative stats
+% Find the files in the folder
+CumulativeStats_Dir                     = dir('CumulativeStats_2019*');
+% Take the latest one and load the stats
+load(CumulativeStats_Dir(end).name,'cumulativeStats','labels')
+%% Current order of the stats:
+    % 1 GROUP, 1-non injured, etc
+    % 2 CASE, i.e. the order of the files
+    % 3 Time point
+    % 4 cell_metrics.Dist_um_s
+    % 5 nuclei_metrics.PositionR
+    % 6 nuclei_metrics.Min_MajAxis
+    % 7 nuclei_metrics.forkness
+    % 8 cell_metrics.forkness
+    % 9 cell_metrics.skelAlignment
+% And Labels:
+%labels={'group','case','time','Dist [um/s]','Rel Position','Min/Maj','Forkness (N)','Forkness (C)','Skel Alignment'};
+
+%% Test per pairs
+caseBoxplot =8;
+%group1 = 5;
+%group2 = 6;
+
+for group1=1:13
+    for group2=group1+1:14
+        [h(group1,group2),t(group1,group2),p]=ttest2(cumulativeStats(cumulativeStats(:,1)==group1,caseBoxplot),...
+                                      cumulativeStats(cumulativeStats(:,1)==group2,caseBoxplot));
+    end
+end
