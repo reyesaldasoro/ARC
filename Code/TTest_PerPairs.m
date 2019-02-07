@@ -1,7 +1,7 @@
 %% Clear all variables and close all figures
 clear all
 close all
-
+clc
 %% Read the current cumulative stats
 % Find the files in the folder
 CumulativeStats_Dir                     = dir('CumulativeStats_2019*');
