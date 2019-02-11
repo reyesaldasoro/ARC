@@ -25,13 +25,18 @@ GroupsPresent   = unique (cumulativeStats(:,1));
 
 
 %% Test per pairs
-caseBoxplot =8;
-%group1 = 5;
-%group2 = 6;
 
-for group1=GroupsPresent(1):GroupsPresent(end)-1
-    for group2=group1+1:GroupsPresent(end)
-        [h(group1,group2),t(group1,group2),p]=ttest2(cumulativeStats(cumulativeStats(:,1)==group1,caseBoxplot),...
-                                      cumulativeStats(cumulativeStats(:,1)==group2,caseBoxplot));
+for caseBoxplot =4:9
+    % Test all the metrics as described above
+    ResultsTTest{caseBoxplot}(1:13,1:14)=nan;
+    % Test all the pairs of groups
+    for group1=GroupsPresent(1):GroupsPresent(end)-1
+        for group2=group1+1:GroupsPresent(end)
+            [h(group1,group2),ResultsTTest{caseBoxplot}(group1,group2),p]=ttest2(...
+                cumulativeStats(cumulativeStats(:,1)==group1,caseBoxplot),...
+                cumulativeStats(cumulativeStats(:,1)==group2,caseBoxplot));
+        end
     end
+    
+    %ResultsTTest{caseBoxplot}= t;
 end
