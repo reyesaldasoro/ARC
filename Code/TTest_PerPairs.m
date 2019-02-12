@@ -2,6 +2,17 @@
 clear all
 close all
 clc
+%% Read the files that have been stored in the current folder
+if strcmp(filesep,'/')
+    % Running in Mac    
+    cd ('/Users/ccr22/Academic/GitHub/ARC/Code')
+else
+    % running in windows
+    cd ('D:\Acad\GitHub\ARC\Code')
+end
+% Calculate the number of files, as of February 2019 there were 315 valid
+
+
 %% Read the current cumulative stats
 % Find the files in the folder
 CumulativeStats_Dir                     = dir('CumulativeStats_2019*');
@@ -37,6 +48,4 @@ for caseBoxplot =4:9
                 cumulativeStats(cumulativeStats(:,1)==group2,caseBoxplot));
         end
     end
-    
-    %ResultsTTest{caseBoxplot}= t;
 end
