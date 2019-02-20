@@ -2,6 +2,7 @@
 clear all
 close all
 clc
+
 %% Read the files that have been stored in the current folder
 if strcmp(filesep,'/')
     % Running in Mac    
