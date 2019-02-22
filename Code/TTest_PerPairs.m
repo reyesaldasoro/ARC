@@ -54,5 +54,9 @@ for caseBoxplot =4:9
 end
 
 
-%%
+%% ANOVAS
+
+
+d= anova1(cumulativeStats(:,4),cumulativeStats(:,1))
+
 
