@@ -55,8 +55,34 @@ end
 
 
 %% ANOVAS
+% Lamin mutants
+% Wt (4) vs. A-/-(12), B1-/-(13), B2-/-(14)
+% (12) vs. (13)
+% (12) vs (14)
+% (13) vs (14)
+% Lbr mutant
+% WT (4) vs. -/- lbr mutant (5)
+% Simple T test (unpaired)
+% 
+% Wt (4) vs. lbr+/-(16) vs lbr-/-(5)
+% Ordered comparison test (not ANOVA) as expect a gene dosage response where (16) is an intermediate between (4) and (5). I’m not sure what the correct test would be.
+%  
+% Uninjured vs. injured
+%  
+% Uninjured (1) vs. (2) injured
+% T-test (unpaired)
+%  
+% (2) injured B2 reporter background vs (6) injured H2Bcerulean background
+% As a control comparison for effect of different transgenes (B2 vs H2B)
+% T-test (unpaired)
+%  
+% (2) injured B2 reporter vs. (7) injured B2 reporter DMSO 
+% As a control to confirm that DMSO is not having an overt effect
+% T-test (unpaired)
 
-
-d= anova1(cumulativeStats(:,4),cumulativeStats(:,1))
+currentMetric           = 9;
+groupsToSelect          = [4 12 13 14];
+selectionPoints         = ismember(cumulativeStats(:,1),groupsToSelect);
+d= anova1(cumulativeStats(selectionPoints,currentMetric),cumulativeStats(selectionPoints,1));
 
 
