@@ -80,9 +80,24 @@ end
 % As a control to confirm that DMSO is not having an overt effect
 % T-test (unpaired)
 
-currentMetric           = 9;
+% ANOVA1 for a series of groups
+currentMetric           = 4;
 groupsToSelect          = [4 12 13 14];
 selectionPoints         = ismember(cumulativeStats(:,1),groupsToSelect);
 d= anova1(cumulativeStats(selectionPoints,currentMetric),cumulativeStats(selectionPoints,1));
+
+%%
+% Anova1 for a series of groups, some of these combined
+currentMetric           = 4;
+groups1                 = [4 ];
+groups2                 = [12 13 14];
+
+selectionPoints1         = ismember(cumulativeStats(:,1),groups1);
+selectionPoints2         = ismember(cumulativeStats(:,1),groups2);
+group1                  = cumulativeStats(selectionPoints1,currentMetric);
+group2                  = cumulativeStats(selectionPoints2,currentMetric);
+
+d= anova1([group1;group2],[ones(size(group1));2*ones(size(group2))]);
+
 
 
