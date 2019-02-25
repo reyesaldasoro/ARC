@@ -5,12 +5,12 @@ close all
 %% Read the files that have been stored in the current folder
 if strcmp(filesep,'/')
     % Running in Mac
-    load('/Users/ccr22/OneDrive - City, University of London/Acad/ARC_Grant/Datasets/DataARC_Datasets_2019_02_01.mat')
+    load('/Users/ccr22/OneDrive - City, University of London/Acad/ARC_Grant/Datasets/DataARC_Datasets_2019_02_25.mat')
     cd ('/Users/ccr22/OneDrive - City, University of London/Acad/ARC_Grant/Results')
     baseDir                             = 'Metrics_2019_02_01/metrics/';
 else
     % running in windows
-    load('D:\OneDrive - City, University of London\Acad\ARC_Grant\Datasets\DataARC_Datasets_2019_02_01.mat')
+    load('D:\OneDrive - City, University of London\Acad\ARC_Grant\Datasets\DataARC_Datasets_2019_02_25.mat')
     cd ('D:\OneDrive - City, University of London\Acad\ARC_Grant\Results')
     baseDir                             = 'Metrics_2019_02_01/metrics/';
 end
