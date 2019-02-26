@@ -30,7 +30,7 @@ load(CumulativeStats_Dir(end).name,'cumulativeStats','labels')
     % 8 cell_metrics.forkness
     % 9 cell_metrics.skelAlignment
 % And Labels:
-%labels={'group','case','time','Dist [um/s]','Rel Position','Min/Maj','Forkness (N)','Forkness (C)','Skel Alignment'};
+labels={'group','case','time','Dist [um/s]','Rel Position','Min/Maj','Forkness (N)','Forkness (C)','Skel Alignment'};
 
 %%
 GroupsPresent   = unique (cumulativeStats(:,1));
@@ -81,11 +81,16 @@ end
 % T-test (unpaired)
 
 % ANOVA1 for a series of groups
-currentMetric           = 4;
+currentMetric           = 9;
 groupsToSelect          = [4 12 13 14];
 selectionPoints         = ismember(cumulativeStats(:,1),groupsToSelect);
-d= anova1(cumulativeStats(selectionPoints,currentMetric),cumulativeStats(selectionPoints,1));
+[p,t,stats]= anova1(cumulativeStats(selectionPoints,currentMetric),cumulativeStats(selectionPoints,1),'off');
 
+
+% Perform a multiple comparison of the group means.
+figure(currentMetric)
+[c,m,h,nms] = multcompare(stats);
+ylabel(labels{currentMetric})
 %%
 % Anova1 for a series of groups, some of these combined
 currentMetric           = 4;
