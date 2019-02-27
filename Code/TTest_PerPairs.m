@@ -81,8 +81,8 @@ end
 % T-test (unpaired)
 
 % ANOVA1 for a series of groups
-currentMetric           = 9;
-groupsToSelect          = [4 12 13 14];
+currentMetric           = 7;
+groupsToSelect          = [5 12 13 14];
 selectionPoints         = ismember(cumulativeStats(:,1),groupsToSelect);
 [p,t,stats]= anova1(cumulativeStats(selectionPoints,currentMetric),cumulativeStats(selectionPoints,1),'off');
 
@@ -93,16 +93,16 @@ figure(currentMetric)
 ylabel(labels{currentMetric})
 %%
 % Anova1 for a series of groups, some of these combined
-currentMetric           = 4;
-groups1                 = [4 ];
-groups2                 = [12 13 14];
-
-selectionPoints1         = ismember(cumulativeStats(:,1),groups1);
-selectionPoints2         = ismember(cumulativeStats(:,1),groups2);
-group1                  = cumulativeStats(selectionPoints1,currentMetric);
-group2                  = cumulativeStats(selectionPoints2,currentMetric);
-
-d= anova1([group1;group2],[ones(size(group1));2*ones(size(group2))]);
+% currentMetric           = 4;
+% groups1                 = [6 ];
+% groups2                 = [12 13 14];
+% 
+% selectionPoints1         = ismember(cumulativeStats(:,1),groups1);
+% selectionPoints2         = ismember(cumulativeStats(:,1),groups2);
+% group1                  = cumulativeStats(selectionPoints1,currentMetric);
+% group2                  = cumulativeStats(selectionPoints2,currentMetric);
+% 
+% d= anova1([group1;group2],[ones(size(group1));2*ones(size(group2))]);
 
 
 
