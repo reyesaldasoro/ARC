@@ -1,18 +1,19 @@
 %% Clear all variables and close all figures
 clear all
 close all
+clc
 
 %% Read the files that have been stored in the current folder
 if strcmp(filesep,'/')
     % Running in Mac
-    load('/Users/ccr22/OneDrive - City, University of London/Acad/ARC_Grant/Datasets/DataARC_Datasets_2019_03_05.mat')
+    load('/Users/ccr22/OneDrive - City, University of London/Acad/ARC_Grant/Datasets/DataARC_Datasets_2019_02_27.mat')
     cd ('/Users/ccr22/OneDrive - City, University of London/Acad/ARC_Grant/Results')
-    baseDir                             = 'Metrics_2019_02_01/metrics/';
+    baseDir                             = 'Metrics_2019_03_05/metrics/';
 else
     % running in windows
-    load('D:\OneDrive - City, University of London\Acad\ARC_Grant\Datasets\DataARC_Datasets_2019_03_05.mat')
+    load('D:\OneDrive - City, University of London\Acad\ARC_Grant\Datasets\DataARC_Datasets_2019_02_27.mat')
     cd ('D:\OneDrive - City, University of London\Acad\ARC_Grant\Results')
-    baseDir                             = 'Metrics_2019_02_01/metrics/';
+    baseDir                             = 'Metrics_2019_03_05/metrics/';
 end
 % Calculate the number of files, as of February 2019 there were 315 valid
 % files
@@ -70,6 +71,11 @@ for currentCase=1: numMetrics
         cumulativeStatsCurr(:,7)       =   imfilter([nuclei_metrics.forkness]',    [0.25 0.5 0.25]','replicate');
         cumulativeStatsCurr(:,8)       =   imfilter([cell_metrics.forkness]',      [0.25 0.5 0.25]','replicate');
         cumulativeStatsCurr(:,9)       =   imfilter([cell_metrics.skelAlignment]', [0.25 0.5 0.25]','replicate');
+        cumulativeStatsCurr(:,10)      =   imfilter([nuclei_metrics.Dist_um_s]', [0.25 0.5 0.25]','replicate');
+        cumulativeStatsCurr(:,11)      =   imfilter([cell_metrics.Area_um_2]', [0.25 0.5 0.25]','replicate');
+        cumulativeStatsCurr(:,12)      =   imfilter([nuclei_metrics.Area_um_2]', [0.25 0.5 0.25]','replicate');
+        cumulativeStatsCurr(:,13)      =   cumulativeStatsCurr(:,12)./cumulativeStatsCurr(:,11);
+        
     catch
         index1 =find(([nuclei_metrics.PositionR]));
         index2 =find(~isnan([nuclei_metrics.PositionR]));
@@ -80,13 +86,20 @@ for currentCase=1: numMetrics
         cumulativeStatsCurr(index3,7)       =   imfilter([nuclei_metrics.forkness]',    [0.25 0.5 0.25]','replicate');
         cumulativeStatsCurr(index3,8)       =   imfilter([cell_metrics.forkness]',      [0.25 0.5 0.25]','replicate');
         cumulativeStatsCurr(index3,9)       =   imfilter([cell_metrics.skelAlignment]', [0.25 0.5 0.25]','replicate');
+        cumulativeStatsCurr(index3,10)      =   imfilter([nuclei_metrics.Dist_um_s]', [0.25 0.5 0.25]','replicate');
+        cumulativeStatsCurr(index3,11)      =   imfilter([cell_metrics.Area_um_2]', [0.25 0.5 0.25]','replicate');
+        cumulativeStatsCurr(index3,12)      =   imfilter([nuclei_metrics.Area_um_2]', [0.25 0.5 0.25]','replicate');
+        cumulativeStatsCurr(index3,13)      =   cumulativeStatsCurr(:,12)./cumulativeStatsCurr(:,11);
+        
+        
+        
     end
     % cumulativeStatsCurr(:,5)       = imfilter(cumulativeStatsCurr(:,1),[0.25 0.5 0.25]','replicate');
     cumulativeStats                = [ cumulativeStats; cumulativeStatsCurr];
 
 end
 
-labels={'group','case','time','Dist [um/s]','Rel Position','Min/Maj','Forkness (N)','Forkness (C)','Skel Alignment'};
+labels={'group','case','time','Vel [um/s] (C)','Rel Position','Min/Maj','Forkness (N)','Forkness (C)','Skel Alignment','Vel [um/s] (N)','Area [um2] (C)','Area [um2] (N)','Area N/Area C'};
 %% Results 2019_02_06
 % As of 2019_02_06, this produces 10,232 rows, one for each instance of a
 % cell with all its stats
@@ -108,7 +121,17 @@ cumulativeStats(cumulativeStats(:,1)==0,:)=[];
 
 % No cases discarded, all were removed previously
 %% Display done in other files, just save in the GitHub folder
-cd('D:\Acad\GitHub\ARC\Code')
+
+if strcmp(filesep,'/')
+    % Running in Mac
+    cd ('/Users/ccr22/Academic/GitHub/ARC/Code')
+else
+    % running in windows
+    cd('D:\Acad\GitHub\ARC\Code')
+end
+
+
+
 
 filename =strcat('cumulativeStats_',datestr(date,'yyyy_mm_dd'));
 save(filename,'cumulativeStats','labels')
