@@ -60,6 +60,13 @@ for currentCase=1: numMetrics
     % 7 nuclei_metrics.forkness
     % 8 cell_metrics.forkness
     % 9 cell_metrics.skelAlignment
+    %10 nuclei_metrics.Dist_um_s
+    %11 cell_metrics.Area_um_2
+    %12 nuclei_metrics.Area_um_2
+    %13 12 ./ 11 ratio of areas
+    
+    
+    
     clear cumulativeStatsCurr
     % Filter the outliers
     try

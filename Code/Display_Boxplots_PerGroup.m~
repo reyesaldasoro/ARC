@@ -22,7 +22,7 @@ load(CumulativeStats_Dir(end).name,'cumulativeStats','labels')
 
 %% Display ONE METRIC against the groups 1,2,3,... 14
 currentMetric_x           = 1;
-currentMetric_y           = 13;
+currentMetric_y           = 12;
 %figure
 boxplot(cumulativeStats(:,currentMetric_y),cumulativeStats(:,currentMetric_x),'whisker',1)
 grid on
