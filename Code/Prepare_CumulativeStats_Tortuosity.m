@@ -41,7 +41,9 @@ end
 
 
 %% read all files and accummulate the stats
-cumulativeStats=[[] []];
+cumulativeStats         =[[] []];
+cumulativeStatsTort     =[[] []];
+
 
 for currentCase=1: numMetrics
     clear cent* min* max* rr cc relP* jet*
@@ -141,5 +143,5 @@ end
 
 
 filename =strcat('cumulativeStats_',datestr(date,'yyyy_mm_dd'));
-save(filename,'cumulativeStats','labels')
+save(filename,'cumulativeStats','labels','cumulativeStatsTort')
 

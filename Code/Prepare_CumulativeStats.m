@@ -8,12 +8,12 @@ if strcmp(filesep,'/')
     % Running in Mac
     load('/Users/ccr22/OneDrive - City, University of London/Acad/ARC_Grant/Datasets/DataARC_Datasets_2019_02_27.mat')
     cd ('/Users/ccr22/OneDrive - City, University of London/Acad/ARC_Grant/Results')
-    baseDir                             = 'Metrics_2019_03_05/metrics/';
+    baseDir                             = 'Metrics_2019_03_14/metrics/';
 else
     % running in windows
     load('D:\OneDrive - City, University of London\Acad\ARC_Grant\Datasets\DataARC_Datasets_2019_02_27.mat')
     cd ('D:\OneDrive - City, University of London\Acad\ARC_Grant\Results')
-    baseDir                             = 'Metrics_2019_03_05/metrics/';
+    baseDir                             = 'Metrics_2019_03_14/metrics/';
 end
 % Calculate the number of files, as of February 2019 there were 315 valid
 % files
@@ -41,7 +41,8 @@ end
 
 
 %% read all files and accummulate the stats
-cumulativeStats=[[] []];
+cumulativeStats         =[[] []];
+cumulativeStatsTort     =[[] []];
 
 for currentCase=1: numMetrics
     clear cent* min* max* rr cc relP* jet*
@@ -103,7 +104,7 @@ for currentCase=1: numMetrics
     end
     % cumulativeStatsCurr(:,5)       = imfilter(cumulativeStatsCurr(:,1),[0.25 0.5 0.25]','replicate');
     cumulativeStats                = [ cumulativeStats; cumulativeStatsCurr];
-
+    cumulativeStatsTort             = [ cumulativeStatsTort; [cumulativeStatsCurr(1:2) cell_metrics.pathTortuosity]]; 
 end
 
 labels={'group','case','time','Vel [um/s] (C)','Rel Position','Min/Maj','Forkness (N)','Forkness (C)','Skel Alignment','Vel [um/s] (N)','Area [um2] (C)','Area [um2] (N)','Area N/Area C'};
@@ -141,5 +142,5 @@ end
 
 
 filename =strcat('cumulativeStats_',datestr(date,'yyyy_mm_dd'));
-save(filename,'cumulativeStats','labels')
+save(filename,'cumulativeStats','labels','cumulativeStatsTort')
 
