@@ -20,11 +20,24 @@ load(CumulativeStats_Dir(end).name,'cumulativeStats','labels')
 % And Labels:
 %labels={'group','case','time','Dist [um/s]','Rel Position','Min/Maj','Forkness (N)','Forkness (C)','Skel Alignment'};
 
-%% Display ONE METRIC against the groups 1,2,3,... 14
+%% Display ONE METRIC against ALL the groups 1,2,3,... 14
 currentMetric_x           = 1;
 currentMetric_y           = 13;
 %figure
 boxplot(cumulativeStats(:,currentMetric_y),cumulativeStats(:,currentMetric_x),'whisker',1)
+grid on
+xlabel(labels{currentMetric_x},'fontsize',20)
+ylabel(labels{currentMetric_y},'fontsize',20)
+ %axis([0.5 5.5 -0.75 0.6])
+ %axis([0.25 10.75 -0.75 0.65])
+
+%% Display ONE METRIC against A SUBSET of the groups 1,2,3,... 14
+currentMetric_x             =  1;
+currentMetric_y             = 13;
+subsetGroups                = [1 3 6 14 16];
+%figure
+indexGroups                 = ismember(cumulativeStats(:,currentMetric_x),subsetGroups);
+boxplot(cumulativeStats(indexGroups,currentMetric_y),cumulativeStats(indexGroups,currentMetric_x),'whisker',1)
 grid on
 xlabel(labels{currentMetric_x},'fontsize',20)
 ylabel(labels{currentMetric_y},'fontsize',20)
