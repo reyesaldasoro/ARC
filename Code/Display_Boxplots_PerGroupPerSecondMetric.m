@@ -21,7 +21,7 @@ load(CumulativeStats_Dir(end).name,'cumulativeStats','labels')
 %labels={'group','case','time','Dist [um/s]','Rel Position','Min/Maj','Forkness (N)','Forkness (C)','Skel Alignment'};
 
 %% Display ONE METRIC against the groups 1,2,3,... 14 AND A second metric divided by steps in boxplots
-step = 5;
+step = 2;
 invStep = 1/step;
 currentMetric_x           = 4;
 currentMetric_y           = 5;
