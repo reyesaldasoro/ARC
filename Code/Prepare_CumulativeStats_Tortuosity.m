@@ -49,6 +49,7 @@ for currentCase=1: numMetrics
     clear cent* min* max* rr cc relP* jet*
     % Load the current file to be displayed
     load(strcat(baseDir,MetricsDir(currentCase).name));
+    qqq{currentCase}= MetricsDir(currentCase).name;
     %    cumulativeStats = [ cumulativeStats; [cell_metrics.Dist_um_s]' [nuclei_metrics.PositionR]' ];
     numCurrFrames               = size(nuclei_metrics,2);
    
