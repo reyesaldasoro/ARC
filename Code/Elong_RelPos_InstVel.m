@@ -1,7 +1,8 @@
 %% Clear all variables and close all figures
 clear all
 close all
-
+   
+%fgfgfgf
 %% Read the files that have been stored in the current folder
 if strcmp(filesep,'/')
     % Running in Mac
