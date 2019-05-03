@@ -26,9 +26,9 @@ load(CumulativeStats_Dir(end).name,'cumulativeStats','labels')
 step = 5;
 invStep = 1/step;
 
-currentMetric_x             = 4;
-currentMetric_y             = 5;
-subsetGroups                = [2 4 6 ];
+currentMetric_x             = 6;
+currentMetric_y             = 12;
+subsetGroups                = [1 5 16    ];
 %figure
 indexGroups                 = ismember(cumulativeStats(:,1),subsetGroups);
 scatter(cumulativeStats(indexGroups,currentMetric_x),cumulativeStats(indexGroups,currentMetric_y),[],cumulativeStats(indexGroups,1))
