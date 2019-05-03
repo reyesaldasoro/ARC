@@ -38,4 +38,5 @@ ylabel(labels{currentMetric_y},'fontsize',20)
  %axis([0.5 5.5 -0.75 0.6])
  %axis([0.25 10.75 -0.75 0.65])
 
-
+colormap jet
+colorbar
