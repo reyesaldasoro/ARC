@@ -6,14 +6,14 @@ clc
 %% Read the files that have been stored in the current folder
 if strcmp(filesep,'/')
     % Running in Mac
-    load('/Users/ccr22/OneDrive - City, University of London/Acad/ARC_Grant/Datasets/DataARC_Datasets_2019_02_27.mat')
+    load('/Users/ccr22/OneDrive - City, University of London/Acad/ARC_Grant/Datasets/DataARC_Datasets_2019_05_03.mat')
     cd ('/Users/ccr22/OneDrive - City, University of London/Acad/ARC_Grant/Results')
-    baseDir                             = 'Metrics_2019_03_14/metrics/';
+    baseDir                             = 'Metrics_2019_04_25/metrics/';
 else
     % running in windows
-    load('D:\OneDrive - City, University of London\Acad\ARC_Grant\Datasets\DataARC_Datasets_2019_02_27.mat')
+    load('D:\OneDrive - City, University of London\Acad\ARC_Grant\Datasets\DataARC_Datasets_2019_05_03.mat')
     cd ('D:\OneDrive - City, University of London\Acad\ARC_Grant\Results')
-    baseDir                             = 'Metrics_2019_03_14/metrics/';
+    baseDir                             = 'Metrics_2019_04_25/metrics/';
 end
 % Calculate the number of files, as of February 2019 there were 315 valid
 % files
@@ -140,7 +140,7 @@ else
     cd('D:\Acad\GitHub\ARC\Code')
 end
 
-
+%%
 
 
 filename =strcat('cumulativeStats_',datestr(date,'yyyy_mm_dd'));
