@@ -116,7 +116,9 @@ labels={'group','case','time','Vel [um/s] (C)','Rel Position','Min/Maj','Forknes
 
 %% remove the cases with NaNs (first of every track, no velocity is calculated)
 cumulativeStats(isnan(cumulativeStats(:,4)),:)=[];
-
+cumulativeStats(isnan(cumulativeStats(:,10)),:)=[];
+cumulativeStats(isnan(cumulativeStats(:,5)),:)=[];
+cumulativeStats(isnan(cumulativeStats(:,7)),:)=[];
 % As of 2019_02_06 there were 750 cases removed leaving 9483
 %% remove the cases with speed above 0.49
 cumulativeStats(cumulativeStats(:,4)>0.45,:)=[];
