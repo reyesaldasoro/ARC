@@ -4,7 +4,7 @@ close all
 
 %% Read the current cumulative stats
 % Find the files in the folder
-CumulativeStats_Dir                     = dir('CumulativeStats_2019*');
+CumulativeStats_Dir                     = dir('CumulativeStats_2019*.mat');
 % Take the latest one and load the stats
 load(CumulativeStats_Dir(end).name,'cumulativeStats','labels')
 %% Current order of the stats:
