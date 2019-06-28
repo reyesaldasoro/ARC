@@ -2,6 +2,9 @@
 clear all
 close all
 
+
+
+
 %% Read the current cumulative stats
 % Find the files in the folder
 CumulativeStats_Dir                     = dir('CumulativeStats_2019*.mat');
