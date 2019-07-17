@@ -85,7 +85,9 @@ for currentCase=1: numMetrics
         cumulativeStatsCurr(:,11)      =   imfilter([cell_metrics.Area_um_2]', [0.25 0.5 0.25]','replicate');
         cumulativeStatsCurr(:,12)      =   imfilter([nuclei_metrics.Area_um_2]', [0.25 0.5 0.25]','replicate');
         cumulativeStatsCurr(:,13)      =   cumulativeStatsCurr(:,12)./cumulativeStatsCurr(:,11);
-        
+        cumulativeStatsCurr(:,14)      =   imfilter([nuclei_metrics.MajAxis_um]', [0.25 0.5 0.25]','replicate');
+        cumulativeStatsCurr(:,15)      =   imfilter([nuclei_metrics.MinAxis_um]', [0.25 0.5 0.25]','replicate');
+       
     catch
         index1 =find(([nuclei_metrics.PositionR]));
         index2 =find(~isnan([nuclei_metrics.PositionR]));
@@ -100,6 +102,8 @@ for currentCase=1: numMetrics
         cumulativeStatsCurr(index3,11)      =   imfilter([cell_metrics.Area_um_2]', [0.25 0.5 0.25]','replicate');
         cumulativeStatsCurr(index3,12)      =   imfilter([nuclei_metrics.Area_um_2]', [0.25 0.5 0.25]','replicate');
         cumulativeStatsCurr(index3,13)      =   cumulativeStatsCurr(:,12)./cumulativeStatsCurr(:,11);
+        cumulativeStatsCurr(index3,14)      =   imfilter([nuclei_metrics.MajAxis_um]', [0.25 0.5 0.25]','replicate');
+        cumulativeStatsCurr(index3,15)      =   imfilter([nuclei_metrics.MinAxis_um]', [0.25 0.5 0.25]','replicate');
         
         
         
