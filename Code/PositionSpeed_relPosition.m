@@ -1,9 +1,25 @@
+%% Clear all variables and close all figures
+clear all
+close all
+clc
 
-%% Read the files that have been stored in the current folder
-cd ('/Users/ccr22/OneDrive - City, University of London/Acad/ARC_Grant/Results')
-baseDir                             = 'Metrics_2018_03_22/metrics/';
+ %% Read the files that have been stored in the current folder
+if strcmp(filesep,'/')
+    % Running in Mac
+    load('/Users/ccr22/OneDrive - City, University of London/Acad/ARC_Grant/Datasets/DataARC_Datasets_2019_05_03.mat')
+    cd ('/Users/ccr22/OneDrive - City, University of London/Acad/ARC_Grant/Results')
+    baseDir                             = 'Metrics_2019_04_25/metrics/';
+else
+    % running in windows
+    load('D:\OneDrive - City, University of London\Acad\ARC_Grant\Datasets\DataARC_Datasets_2019_05_03.mat')
+    cd ('D:\OneDrive - City, University of London\Acad\ARC_Grant\Results')
+    baseDir                             = 'Metrics_2019_04_25/metrics/';
+end
+% Calculate the number of files, as of February 2019 there were 315 valid
+% files
 MetricsDir                          = dir(strcat(baseDir,'*.mat'));
 numMetrics                          = size(MetricsDir,1);
+
 %%
 for k=13%: numMetrics
     clear cent* min* max* rr cc relP* jet*
