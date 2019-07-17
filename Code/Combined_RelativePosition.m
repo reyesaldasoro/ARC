@@ -69,9 +69,9 @@ grid on
 xlabel('Time Frame','fontsize',20)
 ylabel('Relative position of Nuclei','fontsize',20)
 set(gcf,'Position',[33   412   967   386]);
-
+axis([0 100 -0.8 0.8])
 %% Calculate a vector for injured non-injured
-load('/Users/ccr22/OneDrive - City, University of London/Acad/ARC_Grant/Datasets/DataARC_Datasets_2018_03_20.mat')
+%load('/Users/ccr22/OneDrive - City, University of London/Acad/ARC_Grant/Datasets/DataARC_Datasets_2018_03_20.mat')
 
 %%
 for k=1: numMetrics
@@ -104,21 +104,28 @@ end
 %%
 figure
 hold off
-plot(q','color',0.8*[1 1 1])
-hold on
 plot(meanRelPos_NI,'color',[1 0 0],'linewidth',3)
+hold on
+plot(meanRelPos_I,'color',[0 0 1],'linewidth',3)
+plot(q','color',0.8*[1 1 1])
+plot(meanRelPos_NI,'color',[1 0 0],'linewidth',3)
+plot(meanRelPos_I,'color',[0 0 1],'linewidth',3)
+
 plot(meanRelPos_NI+stdRelPos_NI,'color',[1 0 0],'linewidth',1,'linestyle','--')
 plot(meanRelPos_NI-stdRelPos_NI,'color',[1 0 0],'linewidth',1,'linestyle','--')
-plot(meanRelPos_I,'color',[0 0 1],'linewidth',3)
 plot(meanRelPos_I+stdRelPos_I,'color',[0 0 1],'linewidth',1,'linestyle','--')
 plot(meanRelPos_I-stdRelPos_I,'color',[0 0 1],'linewidth',1,'linestyle','--')
+
+
+hLegend = legend({'Non-injured','Injured'});
+
 
 plot([1 150],[0 0],'k-')
 grid on
 xlabel('Time Frame','fontsize',20)
 ylabel('Relative position of Nuclei','fontsize',20)
 set(gcf,'Position',[33   412   967   386]);
+axis([0 100 -0.8 0.8])
 
-
-
+hLegend.String ={'Non-injured','Injured'};
 
