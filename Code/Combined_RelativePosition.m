@@ -15,19 +15,11 @@ else
     cd ('D:\OneDrive - City, University of London\Acad\ARC_Grant\Results')
     baseDir                             = 'Metrics_2019_04_25/metrics/';
 end
-% Calculate the number of files, as of February 2019 there were 315 valid
+%% Calculate the number of files, as of February 2019 there were 315 valid
 % files
 MetricsDir                          = dir(strcat(baseDir,'*.mat'));
 numMetrics                          = size(MetricsDir,1);
-%% Read the files that have been stored in the current folder
-cd ('/Users/ccr22/OneDrive - City, University of London/Acad/ARC_Grant/Results')
 
-
-%%
-
-%baseDir                             = 'Metrics_2018_03_22/metrics/';
-MetricsDir                          = dir(strcat(baseDir,'*.mat'));
-numMetrics                          = size(MetricsDir,1);
 
 %%
 figure
