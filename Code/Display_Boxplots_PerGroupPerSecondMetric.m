@@ -36,7 +36,7 @@ invStep = 1/step;
 
 currentMetric_x             = 4;
 currentMetric_y             = 5;
-subsetGroups                = [2 4 6 ];
+subsetGroups                = [1  2 4 6 ];
 %figure
 indexGroups                 = ismember(cumulativeStats(:,1),subsetGroups);
 boxplot(cumulativeStats(indexGroups,currentMetric_y),{cumulativeStats(indexGroups,1),invStep/2+(invStep)*round(step*cumulativeStats(indexGroups,currentMetric_x))},'whisker',1)
