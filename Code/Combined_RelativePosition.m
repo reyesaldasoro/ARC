@@ -25,7 +25,7 @@ numMetrics                          = size(MetricsDir,1);
 figure
 clf
 hold on
-q=nan(150,150);
+q=nan(numMetrics,300);
 for k=1: numMetrics
     % Load the current file to be displayed
     caseName                = MetricsDir(k).name;     
