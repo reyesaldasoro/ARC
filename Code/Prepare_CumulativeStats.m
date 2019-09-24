@@ -65,7 +65,9 @@ for currentCase=1: numMetrics
     %11 cell_metrics.Area_um_2
     %12 nuclei_metrics.Area_um_2
     %13 12 ./ 11 ratio of areas
-    %14 cell_metrics.Min_MajAxis    
+    %14 nuclei_metrics.MajAxis_um
+    %15 nuclei_metrics.MinAxis_um
+    %16 cell_metrics.Min_MajAxis    
     
     
     clear cumulativeStatsCurr
