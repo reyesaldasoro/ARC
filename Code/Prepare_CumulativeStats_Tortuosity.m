@@ -67,7 +67,7 @@ for currentCase=1: numMetrics
     %11 cell_metrics.Area_um_2
     %12 nuclei_metrics.Area_um_2
     %13 12 ./ 11 ratio of areas
-    
+    %14 cell_metrics.Min_MajAxis
     
     
     clear cumulativeStatsCurr
@@ -87,6 +87,7 @@ for currentCase=1: numMetrics
         cumulativeStatsCurr(:,13)      =   cumulativeStatsCurr(:,12)./cumulativeStatsCurr(:,11);
         cumulativeStatsCurr(:,14)      =   imfilter([nuclei_metrics.MajAxis_um]', [0.25 0.5 0.25]','replicate');
         cumulativeStatsCurr(:,15)      =   imfilter([nuclei_metrics.MinAxis_um]', [0.25 0.5 0.25]','replicate');
+        cumulativeStatsCurr(:,14)       =   imfilter([cell_metrics.Min_MajAxis],  [0.25 0.5 0.25]','replicate');
        
     catch
         index1 =find(([nuclei_metrics.PositionR]));
@@ -104,7 +105,8 @@ for currentCase=1: numMetrics
         cumulativeStatsCurr(index3,13)      =   cumulativeStatsCurr(:,12)./cumulativeStatsCurr(:,11);
         cumulativeStatsCurr(index3,14)      =   imfilter([nuclei_metrics.MajAxis_um]', [0.25 0.5 0.25]','replicate');
         cumulativeStatsCurr(index3,15)      =   imfilter([nuclei_metrics.MinAxis_um]', [0.25 0.5 0.25]','replicate');
-        
+        cumulativeStatsCurr(index3,14)      =   imfilter([cell_metrics.Min_MajAxis],  [0.25 0.5 0.25]','replicate');
+       
         
         
     end
@@ -113,7 +115,7 @@ for currentCase=1: numMetrics
     cumulativeStatsTort             = [ cumulativeStatsTort; [cumulativeStatsCurr(1,1:2) cell_metrics.pathTortuosity]]; 
 end
 
-labels={'group','case','time','Vel [um/s] (C)','Rel Position','Min/Maj','Forkness (N)','Forkness (C)','Skel Alignment','Vel [um/s] (N)','Area [um2] (C)','Area [um2] (N)','Area N/Area C'};
+labels={'group','case','time','Vel [um/s] (C)','Rel Position','Min/Maj N','Forkness (N)','Forkness (C)','Skel Alignment','Vel [um/s] (N)','Area [um2] (C)','Area [um2] (N)','Area N/Area C','Min/Maj C'};
 %% Results 2019_02_06
 % As of 2019_02_06, this produces 10,232 rows, one for each instance of a
 % cell with all its stats
