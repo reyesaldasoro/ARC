@@ -65,7 +65,7 @@ for currentCase=1: numMetrics
     %11 cell_metrics.Area_um_2
     %12 nuclei_metrics.Area_um_2
     %13 12 ./ 11 ratio of areas
-    
+    %14 cell_metrics.Min_MajAxis    
     
     
     clear cumulativeStatsCurr
@@ -83,6 +83,7 @@ for currentCase=1: numMetrics
         cumulativeStatsCurr(:,11)      =   imfilter([cell_metrics.Area_um_2]', [0.25 0.5 0.25]','replicate');
         cumulativeStatsCurr(:,12)      =   imfilter([nuclei_metrics.Area_um_2]', [0.25 0.5 0.25]','replicate');
         cumulativeStatsCurr(:,13)      =   cumulativeStatsCurr(:,12)./cumulativeStatsCurr(:,11);
+        cumulativeStatsCurr(:,14)       =   imfilter([cell_metrics.Min_MajAxis],  [0.25 0.5 0.25]','replicate');
         
     catch
         index1 =find(([nuclei_metrics.PositionR]));
@@ -98,6 +99,7 @@ for currentCase=1: numMetrics
         cumulativeStatsCurr(index3,11)      =   imfilter([cell_metrics.Area_um_2]', [0.25 0.5 0.25]','replicate');
         cumulativeStatsCurr(index3,12)      =   imfilter([nuclei_metrics.Area_um_2]', [0.25 0.5 0.25]','replicate');
         cumulativeStatsCurr(index3,13)      =   cumulativeStatsCurr(:,12)./cumulativeStatsCurr(:,11);
+        cumulativeStatsCurr(index3,14)      =   imfilter([cell_metrics.Min_MajAxis],  [0.25 0.5 0.25]','replicate');
         
         
         
