@@ -3,17 +3,18 @@ clear all
 close all
 clc
 
+
 %% Read the files that have been stored in the current folder
 if strcmp(filesep,'/')
     % Running in Mac
-    load('/Users/ccr22/OneDrive - City, University of London/Acad/ARC_Grant/Datasets/DataARC_Datasets_2019_05_03.mat')
+    load('/Users/ccr22/OneDrive - City, University of London/Acad/ARC_Grant/Datasets/DataARC_Datasets_2020_03_23.mat')
     cd ('/Users/ccr22/OneDrive - City, University of London/Acad/ARC_Grant/Results')
-    baseDir                             = 'Metrics_2019_04_25/metrics/';
+    baseDir                             = 'Metrics_2020_03_23/metrics/';
 else
     % running in windows
-    load('D:\OneDrive - City, University of London\Acad\ARC_Grant\Datasets\DataARC_Datasets_2019_05_03.mat')
+    load('D:\OneDrive - City, University of London\Acad\ARC_Grant\Datasets\DataARC_Datasets_2020_03_23.mat')
     cd ('D:\OneDrive - City, University of London\Acad\ARC_Grant\Results')
-    baseDir                             = 'Metrics_2019_04_25/metrics/';
+    baseDir                             = 'Metrics_2020_03_23/metrics/';
 end
 % Calculate the number of files, as of February 2019 there were 315 valid
 % files
@@ -122,6 +123,7 @@ labels={'group','case','time','Vel [um/s] (C)','Rel Position','Min/Maj N','Forkn
 %% Results 2019_02_06
 % As of 2019_02_06, this produces 10,232 rows, one for each instance of a
 % cell with all its stats
+%  2020_04_17   18177 X 16
 
 %% remove the cases with NaNs (first of every track, no velocity is calculated)
 cumulativeStats(isnan(cumulativeStats(:,4)),:)=[];
