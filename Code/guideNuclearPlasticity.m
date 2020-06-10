@@ -1,7 +1,7 @@
 %% guideNeutrophilNuclearPlasticity
-clear 
-close all
-cd ('D:\Acad\GitHub\ARC\Figures')
+%clear 
+%close all
+%cd ('D:\Acad\GitHub\ARC\Figures')
 %% Reading files
 % The first step is to read the data from tiffs and save in Matlab format. This has several requirements: 
 %%
@@ -44,16 +44,26 @@ imshow(Fig1)
 
 %%
 % For example this would be one set of parameters to be used:
-
-caseName                = 'LSM_170320\170320_Timelapse_5_mat_Or';
+caseName               = 'LSM_170320\170320_Timelapse_5_mat_Or';
 counterCells            = 1;
 displayImages           = 1;
 ChannelDistribution     = [1    16    17    32    33    48    49    64];
 selectedTimeFrame       = [];
 calibrationParameters   = [0.1855   27.2000];  % First is um/pix second is frames/sec
+dataOutFolder           = 'D:\Acad\GitHub\ARC\Figures\';
   
-%%    
-[cell_metrics, nuclei_metrics] = measurementExtraction(caseName,counterCells,ChannelDistribution,displayImages,selectedTimeFrame,calibrationParameters);
+%%
+% Then, to run the code, you will pass the input parameters like this:
+%[cell_metrics, nuclei_metrics] = measurementExtraction(caseName,counterCells,ChannelDistribution,displayImages,selectedTimeFrame,calibrationParameters,dataOutFolder );
 
+%%
+% The output parameters (besides the video that is automatically generated) consist of two structures, one for
+% the cell, and one for the nucleus. Each will have a series of fields with metrics like area, centroid,
+% speed, etc. There are as many values for each metric as time frames of the data:
 
+cell_metrics
+
+%%
+%
+nuclei_metrics
 
