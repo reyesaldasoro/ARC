@@ -1,5 +1,7 @@
 %% guideNeutrophilNuclearPlasticity
-
+clear 
+close all
+cd ('D:\Acad\GitHub\ARC\Figures')
 %% Reading files
 % The first step is to read the data from tiffs and save in Matlab format. This has several requirements: 
 %%
@@ -33,23 +35,25 @@ imshow(Fig1)
 %%
 % 1 the case to be processed, i.e. the folder which contains the data to analyse
 % 2 cell to analyse (in case there are partitions), use 1 if there is only one cell
-% 3 Channel distribution, this describes where the R,G,B, and phase constrast (if at all) are located within
-% the z-stack 
+% 3 Channel distribution, this describes where the R,G,B, and  differential interference contrast (DIC) / phase constrast (if at all) are located within
+% the z-stack, the order is  [g_initial g_final b_initial b_final r_initial r_final dic_initial dic_final] 
 % 4 displayImages: 1 to display, 0 not to display
 % 5 selectedTimeFrame, [] to process all
 % 6 calibrationParameters, to obtain results in um/sec instead of just pixels/frame 
-% 7 dataOutFolder place where data can be saved.
+% 7 dataOutFolder place where data can be saved, can be left out.
 
-caseName                = 'LSM_190719\190719_Timelapse_1_mat_Or';
+%%
+% For example this would be one set of parameters to be used:
+
+caseName                = 'LSM_170320\170320_Timelapse_5_mat_Or';
 counterCells            = 1;
 displayImages           = 1;
-channelDistribution     = [0     0     1    20    21    40    41    60];
+ChannelDistribution     = [1    16    17    32    33    48    49    64];
 selectedTimeFrame       = [];
-calibrationParameters   = [0.2372   18.8600];
-
-    
-    
-[cell_metrics, nuclei_metrics] = measurementExtraction(caseName,counterCells,channelDistribution,1,[],[DataARC_Datasets{caseNumber,22:23}]);
+calibrationParameters   = [0.1855   27.2000];  % First is um/pix second is frames/sec
+  
+%%    
+[cell_metrics, nuclei_metrics] = measurementExtraction(caseName,counterCells,ChannelDistribution,displayImages,selectedTimeFrame,calibrationParameters);
 
 
 
