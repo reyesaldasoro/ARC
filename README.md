@@ -1,5 +1,6 @@
 # ARC
-NeutroPlasticity
+
+<img vspace="5" hspace="5" src="Figures\video_2.gif" alt="">
 
 
 <h2 id="2">Reading files</h2><p>The first step is to read the data from tiffs and save in Matlab format. This has several requirements:</p><p>1)The name should follow the format XXXXT00_C0_Z000.tif where the T denotes the time frame, C the channel and Z the slice of the stack. For example a file can be named: 200228_timelapse1A_T00_C0_Z000. The first part corresponds to the date, and then an identifier of the actual capture. It is not necessary but highly recommended that the naming is done CAREFULLY so that the data sets can be uniquely identified. All the tif files must be inside the same folder. For example:</p><pre class="codeinput">Fig0 = imread(<span class="string">'D:\Acad\GitHub\ARC\Figures\FoldersTIFFs.png'</span>);
