@@ -16,8 +16,8 @@ end
 dir0            = dir ('LSM*');
 numFolders_0    = size(dir0,1);
 %%
-baseFolder_num      = 55;
-subFolder_num       = 1;
+baseFolder_num      = 1;
+subFolder_num       = 4;
 baseFolder_name     = dir0(baseFolder_num).name;
 dirBaseFolder       = dir(strcat(baseFolder_name,filesep,'1*_mat_Or'));
 numSubFolders       = size(dirBaseFolder,1);
