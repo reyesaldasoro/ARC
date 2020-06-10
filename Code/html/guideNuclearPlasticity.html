@@ -1,0 +1,226 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>guideNuclearPlasticity</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-06-10"><meta name="DC.source" content="guideNuclearPlasticity.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">guideNeutrophilNuclearPlasticity</a></li><li><a href="#2">Reading files</a></li><li><a href="#4">Dos and don'ts of file names</a></li><li><a href="#5">ReadTIFFS_Save_MATs</a></li><li><a href="#7">measurementExtraction</a></li></ul></div><h2 id="1">guideNeutrophilNuclearPlasticity</h2><pre class="codeinput"><span class="comment">%clear</span>
+<span class="comment">%close all</span>
+<span class="comment">%cd ('D:\Acad\GitHub\ARC\Figures')</span>
+</pre><h2 id="2">Reading files</h2><p>The first step is to read the data from tiffs and save in Matlab format. This has several requirements:</p><p>1)The name should follow the format *T00_C0_Z000.tif where the T denotes the time frame, C the channel and Z the slice of the stack. For example a file can be named: 200228_timelapse1A_T00_C0_Z000. The first part corresponds to the date, and then an identifier of the actual capture. It is not necessary but highly recommended that the naming is done CAREFULLY so that the data sets can be uniquely identified. All the tif files must be inside the same folder. For example:</p><pre class="codeinput">Fig0 = imread(<span class="string">'D:\Acad\GitHub\ARC\Figures\FoldersTIFFs.png'</span>);
+imshow(Fig0)
+</pre><img vspace="5" hspace="5" src="guideNuclearPlasticity_01.png" alt=""> <h2 id="4">Dos and don'ts of file names</h2><p>In general it is a BAD idea to use elements that may lead to uncertainty, e.g. use an uppercase T followed by numbers (besides the time) in the name, for instance Files_T01_Of_date_T20_of_Sample_T12_T00_C0_Z000.tif. Similarly, it is not a good idea to use C and numbers and Z and numbers or use spaces and dots in the middle of the file name.</p><h2 id="5">ReadTIFFS_Save_MATs</h2><p>To read all the tif files and save in Matlab format, run the file ReadTIFFS_Save_MATS. This will read all the files in the folders and save as Matlab files, one file per time point with all the slices of the z stack in a single file (a 3D matrix). If you have several folders, this can read all in a single call.</p><p>The result will be a folder with one file per time point.</p><pre class="codeinput">Fig1 = imread(<span class="string">'D:\Acad\GitHub\ARC\Figures\FoldersMAT.png'</span>);
+imshow(Fig1)
+</pre><img vspace="5" hspace="5" src="guideNuclearPlasticity_02.png" alt=""> <h2 id="7">measurementExtraction</h2><p>The main file to process the data is measurementExtraction. This file will take as input arguments:</p><p>1 the case to be processed, i.e. the folder which contains the data to analyse 2 cell to analyse (in case there are partitions), use 1 if there is only one cell 3 Channel distribution, this describes where the R,G,B, and  differential interference contrast (DIC) / phase constrast (if at all) are located within the z-stack, the order is  [g_initial g_final b_initial b_final r_initial r_final dic_initial dic_final] 4 displayImages: 1 to display, 0 not to display 5 selectedTimeFrame, [] to process all 6 calibrationParameters, to obtain results in um/sec instead of just pixels/frame 7 dataOutFolder place where data can be saved, can be left out.</p><p>For example this would be one set of parameters to be used:</p><pre class="codeinput">caseName               = <span class="string">'LSM_170320\170320_Timelapse_5_mat_Or'</span>;
+counterCells            = 1;
+displayImages           = 1;
+ChannelDistribution     = [1    16    17    32    33    48    49    64];
+selectedTimeFrame       = [];
+calibrationParameters   = [0.1855   27.2000];  <span class="comment">% First is um/pix second is frames/sec</span>
+dataOutFolder           = <span class="string">'D:\Acad\GitHub\ARC\Figures\'</span>;
+</pre><p>Then, to run the code, you will pass the input parameters like this:</p><pre class="codeinput"><span class="comment">%[cell_metrics, nuclei_metrics] = measurementExtraction(caseName,counterCells,ChannelDistribution,displayImages,selectedTimeFrame,calibrationParameters,dataOutFolder );</span>
+</pre><p>The output parameters (besides the video that is automatically generated) consist of two structures, one for the cell, and one for the nucleus. Each will have a series of fields with metrics like area, centroid, speed, etc. There are as many values for each metric as time frames of the data:</p><pre class="codeinput">cell_metrics
+</pre><pre class="codeoutput">
+cell_metrics = 
+
+  1&times;100 struct array with fields:
+
+    Area
+    Centroid
+    BoundingBox
+    MajorAxisLength
+    MinorAxisLength
+    Eccentricity
+    Orientation
+    Extrema
+    NewArea
+    OldArea
+    Dist
+    Angle
+    Extent
+    numBranches
+    numEndP
+    avTortuosity
+    touchBorder
+    rows
+    columns
+    numSlices
+    forkness
+    skelAlignment
+    skelPerim
+    ratioSkels
+    Dist_um_s
+    Area_um_2
+    MajAxis_um
+    MinAxis_um
+    Min_MajAxis
+    pathTortuosity
+
+</pre><pre class="codeinput">nuclei_metrics
+</pre><pre class="codeoutput">
+nuclei_metrics = 
+
+  1&times;100 struct array with fields:
+
+    Area
+    Centroid
+    MajorAxisLength
+    MinorAxisLength
+    Eccentricity
+    Orientation
+    NewArea
+    OldArea
+    Dist
+    Angle
+    Position
+    PositionS
+    numBranches_Thin
+    numEndP_Thin
+    numBranches_Skel
+    numEndP_Skel
+    forkness
+    skelPerim
+    Dist_um_s
+    Area_um_2
+    MajAxis_um
+    MinAxis_um
+    Min_MajAxis
+    PositionR
+    angleR
+
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% guideNeutrophilNuclearPlasticity
+%clear 
+%close all
+%cd ('D:\Acad\GitHub\ARC\Figures')
+%% Reading files
+% The first step is to read the data from tiffs and save in Matlab format. This has several requirements: 
+%%
+% 1)The name should follow the format *T00_C0_Z000.tif where the T denotes the time frame, C the channel and Z
+% the slice of the stack. For example a file can be named: 200228_timelapse1A_T00_C0_Z000. The first part
+% corresponds to the date, and then an identifier of the actual capture. It is not necessary but highly
+% recommended that the naming is done CAREFULLY so that the data sets can be uniquely identified. All the tif
+% files must be inside the same folder. For example:
+Fig0 = imread('D:\Acad\GitHub\ARC\Figures\FoldersTIFFs.png'); 
+imshow(Fig0)
+
+
+%% Dos and don'ts of file names
+% In general
+% it is a BAD idea to use elements that may lead to uncertainty, e.g. use an uppercase T followed by numbers
+% (besides the time) in the name, for instance Files_T01_Of_date_T20_of_Sample_T12_T00_C0_Z000.tif. Similarly,
+% it is not a good idea to use C and numbers and Z and numbers or use spaces and dots in the middle of the
+% file name. 
+%% ReadTIFFS_Save_MATs
+% To read all the tif files and save in Matlab format, run the file ReadTIFFS_Save_MATS. This will read all
+% the files in the folders and save as Matlab files, one file per time point with all the slices of the z
+% stack in a single file (a 3D matrix). If you have several folders, this can read all in a single call.
+
+%% 
+% The result will be a folder with one file per time point.
+Fig1 = imread('D:\Acad\GitHub\ARC\Figures\FoldersMAT.png'); 
+imshow(Fig1)
+
+%% measurementExtraction
+% The main file to process the data is measurementExtraction. This file will take as input arguments:
+%%
+% 1 the case to be processed, i.e. the folder which contains the data to analyse
+% 2 cell to analyse (in case there are partitions), use 1 if there is only one cell
+% 3 Channel distribution, this describes where the R,G,B, and  differential interference contrast (DIC) / phase constrast (if at all) are located within
+% the z-stack, the order is  [g_initial g_final b_initial b_final r_initial r_final dic_initial dic_final] 
+% 4 displayImages: 1 to display, 0 not to display
+% 5 selectedTimeFrame, [] to process all
+% 6 calibrationParameters, to obtain results in um/sec instead of just pixels/frame 
+% 7 dataOutFolder place where data can be saved, can be left out.
+
+%%
+% For example this would be one set of parameters to be used:
+caseName               = 'LSM_170320\170320_Timelapse_5_mat_Or';
+counterCells            = 1;
+displayImages           = 1;
+ChannelDistribution     = [1    16    17    32    33    48    49    64];
+selectedTimeFrame       = [];
+calibrationParameters   = [0.1855   27.2000];  % First is um/pix second is frames/sec
+dataOutFolder           = 'D:\Acad\GitHub\ARC\Figures\';
+  
+%%
+% Then, to run the code, you will pass the input parameters like this:
+%[cell_metrics, nuclei_metrics] = measurementExtraction(caseName,counterCells,ChannelDistribution,displayImages,selectedTimeFrame,calibrationParameters,dataOutFolder );
+
+%%
+% The output parameters (besides the video that is automatically generated) consist of two structures, one for
+% the cell, and one for the nucleus. Each will have a series of fields with metrics like area, centroid,
+% speed, etc. There are as many values for each metric as time frames of the data:
+
+cell_metrics
+
+%%
+%
+nuclei_metrics
+
+
+##### SOURCE END #####
+--></body></html>
